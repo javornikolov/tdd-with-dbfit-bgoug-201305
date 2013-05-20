@@ -1,0 +1,27 @@
+require_relative 'init_config'
+
+init()
+
+VERSION_NUMBER='1.0.1'
+
+repositories.remote << "http://repo1.maven.org/maven2"
+repositories.remote << "http://repo.maven.apache.org/maven2"
+
+
+desc 'Demos for DbFit with Oracle'
+define 'bgoug-spring-2103-dbfitdemo' do
+
+	project.version = VERSION_NUMBER
+
+	desc 'Command Line Fixture by Bob Martin'
+	define 'command-line-fixture' do
+		project.version = '1.0'
+		compile.with Dir["#{configatron.fitnesse_home}/lib/*.jar"]
+		test.with 'junit:junit:jar:4.11'
+		test.with 'org.hamcrest:hamcrest-all:jar:1.3'
+		test.with Dir["#{configatron.fitnesse_home}/lib/*.jar"]
+		package :jar
+	end
+
+end
+
