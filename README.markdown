@@ -6,8 +6,12 @@ conference on 18 May 2013:
 "Test-driven development of database code with DbFit and Oracle Database" 
 
 
+I'll be adding description of the content and some references to useful
+information.
+
 ## TODO
-Here I'll be adding description of the content and some references to useful information
+* Simplify the description
+* Add the relevant sources
 
 ## Presentation Slides
 
@@ -20,5 +24,68 @@ Rendered slides are accessible:
 Source of slides is in [tdd-with-dbfit-presentation](tdd-with-dbfit-presentation)
 
 ## Demo project
-Small project including some basic DbFit examples is under [dbfitdemo](dbfitdemo)
+Small demo project including some basic DbFit examples is under [dbfitdemo](dbfitdemo).
+
+Content description:
+ * `src/main/rdbms/oracle` - database objects DDL
+ * `src/test/rdbms/dbfit` - DbFit tests
+ * `loaderdemo` - scripts for loading a file with `SQL*Loader`
+
+### Running demo DbFit tests
+
+#### Prerequisites
+* Java (JDK) - version >=6 (tested with 7)
+* Oracle JDBC Driver (ojdbc6.jar)
+* In order to execute tests: Oracle Database instance & schema is needed
+  (with privileges to connect and create table,view,trigger,pl/sql)
+* DbFit 2.x
+  - Follow installation instructions of DbFit (download, unzip)
+  - Copy ojdbc6.jar inside DbFit's lib directory
+  - Copy the provided CommandLineFixture `.jar` from `dist` to DbFit's lib
+  - Add DemoDBConnection.properties in DbFit folder
+    (use DemoDBConnection.properties.sample as example)
+
+#### Running DbFit server & running tests from browser
+
+* Use [run_fitnesse.sh](run_fitnesse.sh) as example how to run DbFit in order to
+  serve the content under [dbfitdemo/src/test/rdbms/dbfit](dbfitdemo/src/test/rdbms/dbfit)
+* Navigate to the appropriate URL via browser
+
+#### Advanced setup
+This is needed to use some of the build/run scripts automating the tasks of
+deploying db objects and running tests.
+
+* Install Ruby (tested with version 2.0)
+* Copy `config.rb.sample` to the parent folder with name `config.rb` and edit
+the file accordingly
+* Install related ruby gems:
+
+```
+cd dbfitdemo
+bundle install
+```
+
+Having that:
+* `rake all` - deploys all rdbms artefacts and runs DbFit tests from command line
+* `guard` - monitors source folders and runs the above automatically on file
+  modification
+  - I'm not sure if `guard` is available on Windows.
+
+#### Manual setup
+The database sources should be loaded into the relevant schema. (Look at
+`Rakefile` for example - it's using `setup/setup_main.sql` to deploy them)
+
+
+#### SQL*Loader test
+This is using some platform-specific stuff under `loaderdemo` (works on Linux).
+(May need to tweak it - e.g. convert to .bat in order to run on Windows)
+
+
+### In order to build CommandLineFixture:
+```
+cd dbfitdemo
+buildr package
+```
+
+In general this is not needed since a pre-built .jar file is provided under `dist`.
 
