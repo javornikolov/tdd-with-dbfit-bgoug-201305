@@ -30,6 +30,10 @@ Content description:
  * `src/main/rdbms/oracle` - database objects DDL
  * `src/test/rdbms/dbfit` - DbFit tests
  * `loaderdemo` - scripts for loading a file with `SQL*Loader`
+ * `command-line-fixture` - sub-project with source of
+   [CommandLineFixture by Bob Martin](http://fit.c2.com/wiki.cgi?CommandLineFixture)
+  - Used by the SQL*Loader example
+  - Compiled .jar is provided under `dist`
 
 ### Running demo DbFit tests
 
