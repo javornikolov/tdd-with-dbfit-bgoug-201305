@@ -1,0 +1,22 @@
+!include .BgougDemoSuite.DummyTest
+
+!|Execute|create table employee( id number(38), name varchar2(10), dept varchar2(15), salary number )|
+
+!3 Table is empty before loader
+!|Query|select * from employee|
+|id    |name  |dept  |salary  |
+
+
+!3 Load some data with Oracle SQL*Loader
+|com.objectmentor.fixtures.CommandLineFixture       |
+|command|${PROJECT_ROOT}/loaderdemo/load_employee.sh|
+
+
+!|Query|select * from employee   |
+|id    |name? |dept?     |salary?|
+|100   |Thomas|Sales     |5000   |
+|200   |Jason |Technology|5500   |
+|300   |Mayla |Technology|7000   |
+|400   |Nisha |Marketing |9500   |
+|500   |Randy |Technology|6000   |
+|501   |Ritu  |Accounting|5400   |

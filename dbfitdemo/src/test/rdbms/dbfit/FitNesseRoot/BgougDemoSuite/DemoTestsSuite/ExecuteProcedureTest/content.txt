@@ -1,0 +1,9 @@
+|set option|fixed length string parsing|true|
+
+!|Execute Procedure|zlpad_notrunc        |
+|p_str             |p_padded_len|?       |
+|'12'              |5           |'00012' |
+|''                |5           |'00000' |
+|'123456'          |5           |'123456'|
+
+|set option|fixed length string parsing|false|

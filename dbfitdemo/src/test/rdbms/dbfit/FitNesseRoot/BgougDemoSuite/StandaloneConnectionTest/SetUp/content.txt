@@ -1,0 +1,7 @@
+|import fixture|
+|dbfit.fixture|
+
+!note ''DatabaseEnvironment'' fixture should be used to connect in Standalone Mode
+
+!|DatabaseEnvironment|oracle|
+|connect|localhost:1521|dftest[bgoug]|ENC(e/2HNmEUkCBPaYOr3p5OZw==)|cvu2|

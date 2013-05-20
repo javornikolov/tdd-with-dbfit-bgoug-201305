@@ -1,0 +1,7 @@
+!|set parameter|name|BGOUG|
+
+!|execute|insert into testtbl(n, name) values(2013, :name)|
+
+!|query|select * from testtbl where n = 2013|
+|name                                       |
+|BGOUG                                      |

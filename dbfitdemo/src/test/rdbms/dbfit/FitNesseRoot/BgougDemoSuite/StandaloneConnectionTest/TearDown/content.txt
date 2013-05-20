@@ -1,0 +1,7 @@
+!|Execute|drop table employee|
+
+!|DatabaseEnvironment|
+|rollback|
+
+!|dbfit.util.ExportFixture|
+|dbfit.fixture|

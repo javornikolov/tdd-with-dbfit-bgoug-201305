@@ -1,0 +1,13 @@
+!|insert|testtbl|
+|n      |name   |
+|1      |NAME1  |
+|3      |NAME3  |
+|2      |NAME2  |
+
+|update|testtbl |
+|n     |name=   |
+|1     |New Name|
+
+!|query|select * from testtbl where n = 1|
+|n     |name                             |
+|1     |New Name                         |

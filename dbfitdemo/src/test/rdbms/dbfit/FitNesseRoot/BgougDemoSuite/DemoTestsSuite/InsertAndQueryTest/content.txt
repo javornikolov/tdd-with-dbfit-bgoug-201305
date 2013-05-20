@@ -1,0 +1,11 @@
+!|insert|testtbl|
+|n      |name   |
+|1      |NAME1  |
+|3      |NAME3  |
+|2      |NAME2  |
+
+!|query|select * from testtbl|
+|n     |name                 |
+|1     |NAME1                |
+|3     |NAME3                |
+|2     |NAME2                |

@@ -1,0 +1,8 @@
+!|inspect table|tab1|
+
+!|execute|create or replace procedure p1( p_arg1 number, p_arg2 varchar2 ) is begin null; end p1;|
+
+!|inspect procedure|p1|
+
+!|execute|drop procedure p1|
+

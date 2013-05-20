@@ -1,0 +1,6 @@
+!|Store Query|select 1 n from dual union select 2 n from dual|firsttable|
+
+!|query|<<firsttable|
+|n                  |
+|1                  |
+|2                  |
