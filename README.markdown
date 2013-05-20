@@ -38,7 +38,10 @@ Content description:
 ### Running demo DbFit tests
 
 #### Prerequisites
-* Java (JDK) - version >=6 (tested with 7)
+* [Java SE](http://www.oracle.com/technetwork/java/javase/downloads/index.html) -
+  version >=6 (tested with 7)
+  - JRE should be enough for running tests
+  - If compiling CommandLineFixture - install JDK (includes JRE)
 * Oracle JDBC Driver >= 11.2.0.3 (ojdbc6.jar).
   - [download page](http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html)
   - Or take it from `$ORACLE_HOME/jdbc/lib`
