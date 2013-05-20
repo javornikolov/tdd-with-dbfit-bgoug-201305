@@ -1,0 +1,27 @@
+umask 022
+
+ORACLE_SID="${1}"
+
+LOCAL_BIN_DIR="/usr/local/bin"
+DBHOME="${LOCAL_BIN_DIR}/dbhome"
+
+ORACLE_BASE="/u01/app/oracle"
+ORACLE_HOME=`${DBHOME} "${ORACLE_SID}"`
+unset OH
+unset TNS_ADMIN
+
+#TNS_ADMIN=${ORACLE_HOME}/network/admin
+#export TNS_ADMIN
+
+NLS_DATE_FORMAT='yyyy-mm-dd hh24:mi:ss'
+NLS_LANG=AMERICAN_AMERICA.AL32UTF8
+
+export ORACLE_BASE ORACLE_HOME NLS_LANG NLS_DATE_FORMAT ORACLE_SID
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11
+PATH="${ORACLE_HOME}/bin:${PATH}"
+PATH="${ORACLE_HOME}/OPatch:${PATH}"
+LD_LIBRARY_PATH=${ORACLE_HOME}/lib
+
+export LD_LIBRARY_PATH PATH
+
