@@ -1,0 +1,10 @@
+# Sample configuration settings. Use it to build a real config.rb which should
+# be placed in the *parent* folder
+
+configatron.project_root = File.expand_path( File.dirname( __FILE__ ) )
+configatron.fitnesse_home = '/path/to/unzipped/dbfit/folder'
+configatron.dbuser = 'myuser'
+configatron.dbpass = 'mypassword'
+
+configatron.dbfit_run_port=8981
+
