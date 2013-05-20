@@ -1,0 +1,23 @@
+*.swp
+*~
+target/
+
+*.sw*
+
+# dbfit-related stuff
+*.zip
+*.jar
+src/test/rdbms/dbfit/FitNesseRoot/files/testResults/
+src/test/rdbms/dbfit/FitNesseRoot/files/
+src/test/rdbms/dbfit/FitNesseRoot/RecentChanges/
+src/test/rdbms/dbfit/FitNesseRoot/ErrorLogs/
+src/test/rdbms/dbfit/FitNesseRoot/PageFooter/
+src/test/rdbms/dbfit/FitNesseRoot/PageHeader/
+src/test/rdbms/dbfit/FitNesseRoot/FitNesse/
+src/test/rdbms/dbfit/FitNesseRoot/updateDoNotCopyOverList
+src/test/rdbms/dbfit/FitNesseRoot/updateList
+src/test/rdbms/dbfit/FitNesseRoot/properties
+*.log
+*.sh
+DemoDBConnection.properties
+
