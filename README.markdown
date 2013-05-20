@@ -1,13 +1,10 @@
 # Samples and slides source for "TDD with DbFit and Oracle"
 
 ## Introduction ##
-Here I'm maintaining some materials related to my talk given on BGOUG Spring
-conference on 18 May 2013:
-"Test-driven development of database code with DbFit and Oracle Database" 
+Here I'm maintaining some materials related to my talk given at
+[BGOUG Spring conference on 18 May 2013](http://www.bgoug.org/en/events/details/89.html):
+*Test-driven development of database code with DbFit and Oracle Database*
 
-
-I'll be adding description of the content and some references to useful
-information.
 
 ## Presentation Slides
 
