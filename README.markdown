@@ -9,16 +9,10 @@ conference on 18 May 2013:
 I'll be adding description of the content and some references to useful
 information.
 
-## TODO
-* Simplify the description
-* Add the relevant sources
-
 ## Presentation Slides
 
-Rendered slides are accessible:
-
-* Via web browser in [html format](http://javornikolov.github.io/tdd-with-dbfit-bgoug-201305)
-* As PDF version at [slideshare](http://www.slideshare.net/javornikolov/tdd-with-db-fit-and-oracle-bgoug-conference-20130518)
+Rendered slides are available in [html format](http://javornikolov.github.io/tdd-with-dbfit-bgoug-201305)
+and PDF-like one at [slideshare](http://www.slideshare.net/javornikolov/tdd-with-db-fit-and-oracle-bgoug-conference-20130518)
 
 
 Source of slides is in [tdd-with-dbfit-presentation](tdd-with-dbfit-presentation)
