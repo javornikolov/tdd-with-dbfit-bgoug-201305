@@ -1,0 +1,18 @@
+# A sample Guardfile
+# More info at https://github.com/guard/guard#readme
+
+# Add files and commands to this file, like the example:
+#   watch(%r{file/path}) { `command(s)` }
+#
+
+require 'logger'
+
+guard 'shell' do
+	logger = Logger.new(STDOUT)
+
+	watch(%r{^scripts/md/.*$}) {|m|
+		logger.info( "Processing #{m[0]}" )
+		`cd scripts/md; ./render.py`
+	}
+end
+
