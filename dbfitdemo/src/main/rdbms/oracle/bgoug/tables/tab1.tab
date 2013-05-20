@@ -1,0 +1,2 @@
+create table tab1( id number(30), val varchar2(100) );
+
