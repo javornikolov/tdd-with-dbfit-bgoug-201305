@@ -1,0 +1,12 @@
+!***> BGOUG 2013 Spring Conference - DbFit Demo Suite
+
+#!path lib/* fitlibrary-2.0.jar
+#!path fitnesse-standalone.jar
+
+!path lib/*.jar
+
+#!define TEST_RUNNER {fitlibrary.suite.FitLibraryServer}
+*!
+!contents -R2 -g -p -f -h
+
+!define PROJECT_ROOT {/home/yavor/work/projects/bgoug/bgoug-spring-2013/dbfitdemo}

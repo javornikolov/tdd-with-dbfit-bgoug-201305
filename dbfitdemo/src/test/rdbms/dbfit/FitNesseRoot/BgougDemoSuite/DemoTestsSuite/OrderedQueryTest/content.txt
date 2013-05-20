@@ -1,0 +1,11 @@
+!|insert|testtbl|
+|n      |name   |
+|1      |NAME1  |
+|3      |NAME3  |
+|2      |NAME2  |
+
+!|Ordered Query|select * from testtbl order by n|
+|n             |name?                           |
+|1             |NAME1                           |
+|2             |NAME2                           |
+|3             |NAME3                           |

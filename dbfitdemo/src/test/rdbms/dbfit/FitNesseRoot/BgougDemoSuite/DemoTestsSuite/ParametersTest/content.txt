@@ -1,0 +1,9 @@
+!|set parameter|ONE|1|
+
+!|query|select sysdate mytime from dual|
+|mytime?                               |
+|>>current_time                        |
+
+!|query|select count(*) cnt from dual where sysdate >= :current_time|
+|cnt                                                                |
+|<<ONE                                                              |

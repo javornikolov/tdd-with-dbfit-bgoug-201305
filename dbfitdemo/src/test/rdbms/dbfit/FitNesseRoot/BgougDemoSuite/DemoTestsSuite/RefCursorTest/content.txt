@@ -1,0 +1,12 @@
+!3 To extract values from output ref cursor, just store them in variables and use Query/Ordered Query
+
+
+!|Execute procedure|utl_params.get_parameters|
+|p_num_params      |?                        |
+|3                 |>>myparams               |
+
+!|Ordered Query|<<myparams                 |
+|id            |name?  |value?|description?|
+|1             |param 1|value1|            |
+|2             |param 2|value2|            |
+|3             |param 3|value3|            |

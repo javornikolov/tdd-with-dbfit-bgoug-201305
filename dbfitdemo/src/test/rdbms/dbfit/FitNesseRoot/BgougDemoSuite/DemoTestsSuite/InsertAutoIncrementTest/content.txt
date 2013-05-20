@@ -1,0 +1,17 @@
+!|insert |tab1  |
+|val     |id?   |
+|Batman  |>>myid|
+|Superman|>>smid|
+
+!|inspect query|select * from tab1|
+
+!|query|select id, val from tab1|
+|id    |val                     |
+|<<myid|Batman                  |
+|<<smid|Superman                |
+
+
+!|query|select id, val from tab1 where id = :myid|
+|id    |val                                      |
+|<<myid|Batman                                   |
+

@@ -1,0 +1,12 @@
+# !|execute|drop table testtbl|
+
+!|clean|
+|table |
+|tab1  |
+
+
+!|clean |
+|table  |
+|testtbl|
+
+# !|execute|commit|
