@@ -1,0 +1,976 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BGOUG 2013</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/app.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<!-- <slide class="logoslide nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo.png"></span>
+  </article>
+</slide>
+ -->
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img src="images/bgoug/bgoug_logo.png"></aside>
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <hgroup class="auto-fadein">
+    <h1 data-config-title><!-- populated from slide_config.json --></h1>
+    <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+    <p data-config-presenter><!-- populated from slide_config.json --></p>
+  </hgroup>
+</slide>
+
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Agenda</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Concepts (Testing, Test-Driven Development)</li>
+<li>DbFit</li>
+<li>Demo</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>What is a legacy system?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>You spot an obvious design problem</li>
+<li>know how to improve that,</li>
+<li>but the thought about consequences gives you a stomach ache.</li>
+</ul>
+<p>&nbsp;<footer class="source">source: <a href="http://gojko.net/2007/11/20/fighting-the-monster">Gojko Adzic, "Fighting the monster"</a></footer></p></article>
+ 
+</slide>
+
+<slide class="image" >
+  
+    <hgroup>
+      <h2></h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p><img alt="Agile Testing Quadrants" src="images/bgoug/Agile-Testing-Quadrants.png" /></p>
+<p>&nbsp;<footer class="source">source: <a href="http://lisacrispin.com/2011/11/08/using-the-agile-testing-quadrants">http://lisacrispin.com/2011/11/08/using-the-agile-testing-quadrants</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Why (automated) testing?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Makes application change easier</li>
+<li>Safety net - provides confidence/removes fear</li>
+<li>Documentation</li>
+<li>Help to localize where exactly a defect is located</li>
+<li>Reduce the chance of new bugs</li>
+<li>Automation enables earlier feedback, saves time, helps focusing on solving the
+  main problem. (Not everything is feasible to automate)</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Test Fixture</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>All the things we need to have in place in order to run a test and expect a particular outcome</li>
+<li>The test context</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>System Under Test (SUT)</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>The system that is being tested</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Test execution cycle</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ol class="build">
+<li>Arrange (set up the Fixture)</li>
+<li>Act (exercise the System Under Test)</li>
+<li>Assert (verify results are <b>as expected</b>)</li>
+<li>Tear Down the fixture (to isolate other tests from this one)</li>
+</ol></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Unit test</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Tests small individual unit (module, procedure/function)</li>
+<li>In isolation (no interaction with other units)</li>
+<li>Should run quickly (otherwise people won't run them)</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Integration test</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Tests several modules as a <b>group</b></li>
+<li>Slower than unit tests (usually)</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Acceptance test</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Conducted to determine whether or not a system satisfies its <b>acceptance criteria</b></li>
+<li>and to enable the customer to determine whether or not to accept the system.</li>
+<li>At least modeled and possibly even written by the <b>customer</b></li>
+<li>End-to-end (slower than Integration &amp; Unit tests)</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Regression tests</h2>
+      <h3>(<b>Re</b>gress vs progress)</h3>
+    </hgroup>
+    <article ><p>Performed to make sure that <b>previously working functionality still works</b> after
+changes elsewhere in the system</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Refactor</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Is the the process of changing a system in such a way that</p>
+<ul>
+<li>doesn't alter external behaviour</li>
+<li>and improves it's internal structure (design)</li>
+<li>through <b>small steps</b></li>
+</ul>
+<p>Doing refactoring without tests is unsafe</p></article>
+ 
+</slide>
+
+<slide class="image" >
+  
+    <hgroup>
+      <h2>TDD Cycle</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p><img alt="TDD Cycle" src="images/bgoug/tddcycle.gif" /></p>
+<footer class="source">source: Internet</footer></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Tests are not the main product in TDD</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>TDD is a <b>design</b> technique</li>
+<li>The <b>design</b> emerges in <b>small steps</b></li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Why test first?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Start with end in mind (think from point of view of <b>caller</b>)</li>
+<li>This perspective helps for better design</li>
+<li>Test coverage is useful byproduct</li>
+<li>Greatly reduces the need of debugging</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="Image" >
+  
+    <hgroup>
+      <h2>Cost of change (traditional)</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p><img alt="Traditional Life Cycle" src="images/bgoug/costOfChangeTraditional.gif" /></p></article>
+ 
+</slide>
+
+<slide class="Image" >
+  
+    <hgroup>
+      <h2>Cost of change (test early)</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p><img alt="Agile Life Cycle" src="images/bgoug/costOfChangeAgile.gif" /></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Why testing the Database?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>For lot of businesses, data held in DB are the most vital commercial asset
+  they have</li>
+<li>Business critical functions rely on this data</li>
+<li>So it makes sense to validate that data is stored and processed correctly</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Challenges of Database testing...</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Bad tools<ul>
+<li>Too much boilerplate code</li>
+<li>OO tools not directly applicable for RDBMS</li>
+</ul>
+</li>
+<li>Inherently hard to test. Isolation is difficult<ul>
+<li>Changes are persistent</li>
+<li>Shared environment</li>
+<li>Triggers, Constraints</li>
+</ul>
+</li>
+<li>Attitude ("it's not my job")</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>How to isolate db tests?</h2>
+      <h3>Run tests in one transaction</h3>
+    </hgroup>
+    <article ><ul>
+<li>Makes them repeatable and independent</li>
+<li>When one transaction is not an option - clean up after tests</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>How to isolate db tests (2)?</h2>
+      <h3>Dedicated database</h3>
+    </hgroup>
+    <article ><ul>
+<li>One db per contributor</li>
+<li>Separate schemas</li>
+<li>Shared Dev db may work too</li>
+<li>As a rule - avoid running tests on top of production</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Other Tips</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Make tests self-sufficient</li>
+<li>Don't count on the order of tests</li>
+<li>Prepare everything you need for the test in its set-up</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="images/bgoug/bgoug_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>DbFit</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>What is DbFit?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Initially created by Gojko Adzic:<ul>
+<li>to enable efficient database testing</li>
+<li>motivate database developers to use an automated testing framework</li>
+</ul>
+</li>
+<li>Enables manipulating database objects and defining tests in <b>tabular form</b></li>
+<li>Open source <a href="https://github.com/benilovj/dbfit">https://github.com/benilovj/dbfit</a></li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>DbFit, FIT and FitNesse</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>DbFit is based on FIT+FitNesse+DB Fixtures which enable FIT/Fitnesse tests to execute
+  directly against a database.</li>
+<li>FIT is Acceptance testing framework<ul>
+<li>customer oriented</li>
+<li>tests are described as tables</li>
+</ul>
+</li>
+<li>FitNesse is Wiki-web based front-end for FIT</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="image" >
+  
+    <hgroup>
+      <h2>FitNesse architecture</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p><img alt="FitNesse Architecture" src="images/bgoug/fitnesse_architecture.jpg" />
+<footer class="source">source: <a href="http://www.fitnesse.org/FitNesse.UserGuide.OneMinuteDescription">Fittnesse User Guilde - One Minute Description</a></footer></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>What is DbFit Fixture?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>A fixture is interface between:<ul>
+<li>the test instrumentation (Fit framework),</li>
+<li>test cases (Fit tables),</li>
+<li>and the system under test (e.g. a database stored procedure)</li>
+</ul>
+</li>
+<li>In general there is 1:1 mapping between Fit table and fixture</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Why DbFit?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Easy to use (even for non-technical people)<ul>
+<li>Tests expressed and managed as tables</li>
+<li>Web-Wiki front-end</li>
+</ul>
+</li>
+<li>Provides all the plumbing:<ul>
+<li>Transaction management</li>
+<li>Features based on meta-data</li>
+<li>Parameter mapping</li>
+</ul>
+</li>
+<li>Runs inside FitNesse - already integrated with lots of other tools/libraries</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>What is Wiki?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>The simplest online database that could possibly work. - Ward Cunningham</li>
+<li>Allows users to freely create and edit Web page content using any Web browser</li>
+<li>A group communication mechanisms</li>
+<li>Encourages democratic use of the Web and promotes content composition by
+nontechnical users</li>
+</ul>
+<p>&nbsp;<footer class="source">source: <a href="http://wiki.org/wiki.cgi?WhatIsWiki">http://wiki.org/wiki.cgi?WhatIsWiki</a></footer></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Fitnesse Wiki</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Hierarchies - SubWiki, Test Suites</li>
+<li>Page types - Suite, Test, Static</li>
+<li>Some special pages:<ul>
+<li>PageHeader, PageFooter</li>
+<li>SetUp, TearDown, SuiteSetUp, SuiteTearDown</li>
+<li>Inherited recurively by default; can be overriden</li>
+</ul>
+</li>
+<li><a href="http://fitnesse.org/FitNesse.UserGuide">http://fitnesse.org/FitNesse.UserGuide</a></li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>A Unit test with DbFit</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ol>
+<li>Set up the input data (<b>arrange</b>).</li>
+<li>Execute a function or procedure (<b>act</b>).</li>
+<li>Run a query and compare actual vs expected data (<b>assert</b>).</li>
+</ol></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Basic commands of DbFit</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Query</li>
+<li>Insert</li>
+<li>Update</li>
+<li>Execute Procedure</li>
+<li>Execute</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Advanced features</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Inspect queries, tables, procedures to auto-generate test tables and regression
+tests</li>
+<li>Store and compare queries</li>
+<li>Standalone mode for full control</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Getting started</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ol>
+<li>Needs Java to run</li>
+<li>Download: <a href="http://benilovj.github.io/dbfit">http://benilovj.github.io/dbfit</a></li>
+<li>Unzip</li>
+<li>Copy Oracle JDBC driver (ojdbc6.jar) to <b>lib</b> subfolder</li>
+<li>Run the startup script (startFitnesse.sh or startFitnesse.bat)</li>
+<li>Access via web browser - http://localhost:8085</li>
+</ol></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Connecting to the database</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Inline configuration:
+<pre class="prettyprint">
+!|Connect|localhost:1521|username|password|dbname|
+</pre></p>
+<p>Using properties file:
+<pre class="prettyprint">
+!|ConnectUsingFile|DBConnection.properties|
+</pre></p>
+<pre class="prettyprint">
+service=localhost:1521
+username=username
+password=password
+database=dbname
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Query</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint">
+!|insert|testtbl|
+|n      |name   |
+|1      |NAME1  |
+|3      |NAME3  |
+|2      |NAME2  |
+
+!|query|select * from testtbl|
+|n     |name                 |
+|1     |NAME1                |
+|3     |NAME3                |
+|2     |NAME2                |
+</pre></article>
+ 
+</slide>
+
+<slide class="image" >
+  
+    <hgroup>
+      <h2>Ordered Query</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint">
+!|Ordered Query|select * from testtbl order by n|
+|n             |name?                           |
+|1             |NAME1                           |
+|3             |NAME3                           |
+|2             |NAME2                           |
+</pre>
+
+<p><img alt="Ordered Query Test" src="images/bgoug/ordered_query_test.png" /></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Insert</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint">
+!|insert|testtbl|
+|n      |name   |
+|1      |NAME1  |
+|3      |NAME3  |
+|2      |NAME2  |
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Execute Procedure</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint">
+!2 No parameters
+!|Execute Procedure|do_stuff|
+
+!2 Functions - return values with "?"
+!|Execute Procedure|zlpad_notrunc        |
+|p_str             |p_padded_len|?       |
+|'12'              |5           |'00012' |
+
+!2 OUT parameters - "?" suffix
+!|Execute Procedure|split_name|
+|p_fullname |p_first_name?|p_last_name?|
+|Mikey Mouse|Mickey       |Mouse       |
+
+!2 IN OUT parameters - specify twice
+!|Execute Procedure|make_double|
+|x|x?|
+|3|6 |
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Expect exception</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint">
+!2 Expect ORA-20013
+!|Execute procedure <b>expect exception</b>|set_age|<b>20013</b>|
+|p_age                                            |
+|-5                                               |
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Parameters and fixture symbols</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li><code>set parameter</code> to set parameter directly</li>
+<li><code>&gt;&gt;paramname</code> - store a value</li>
+<li><code>&lt;&lt;paramname</code> - read the value</li>
+</ul>
+<pre class="prettyprint">
+!|set parameter|ONE|1|
+
+!|query|select sysdate mytime from dual|
+|mytime?                               |
+|<b>>>current_time</b>                      |
+
+!|query|select count(*) cnt from dual where sysdate >= <b>:current_time</b>|
+|cnt                                                                 |
+|<b>&lt;&lt;ONE</b>                                                               |
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Store Query</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint">
+!|Store Query|select 1 n from dual union select 2 n from dual|firsttable|
+
+!|query|&lt;&lt;firsttable|
+|n                  |
+|1                  |
+|2                  |
+
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Compare Stored Queries</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint">
+!|insert|testtbl|
+|n      |name   |
+|1      |NAME1  |
+|3      |NAME3  |
+|2      |NAME2  |
+
+|Store Query|select * from testtbl|fromtable|
+
+|Store Query|!- select 1 n, 'name1' name from dual|fromdual|
+<b>
+|compare stored queries|fromtable|fromdual|
+|name                  |n?                |
+</b>
+</pre>
+
+<ul>
+<li>Use <b>?</b> suffix for non-key columns</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Working Modes of fixtures</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Flow</li>
+<li>Standalone</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Working Modes of fixtures (2)</h2>
+      <h3>Flow mode</h3>
+    </hgroup>
+    <article ><ul>
+<li>A <b>DatabaseTest</b> fixture controls the whole page and coordinates
+testing<ul>
+<li>OracleTest, MysqlTest, DerbyTest, DB2Test, ...</li>
+</ul>
+</li>
+<li>Automatic rollback at the end (manual commit or rollback is still possible)</li>
+<li>Better isolation</li>
+<li>Some additional features such as inspections of stored procedure error
+results</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Working Modes of fixtures (3)</h2>
+      <h3>Standalone mode</h3>
+    </hgroup>
+    <article ><ul>
+<li>We are responsible for transaction management</li>
+<li>Enables more control over the database testing process</li>
+<li>Allows using other individual fixtures</li>
+<li>We can supply our own database connection to make sure that (Java)
+integration tests are running in the same transaction</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Connecting to databse</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint">
+<b>!3 In Flow mode</b>
+!|dbfit.OracleTest|
+!|Connect|ourhost:1521|dbusername|dbpassword|mydb|
+
+# Alternatively - TNS descriptor can be used:
+#!|Connect|(DESCRIPTION=(ADDRESS=...))|
+</pre>
+
+<pre class="prettyprint">
+<b>!3 In Standalone mode</b>
+|import fixture|
+|dbfit.fixture|
+!|DatabaseEnvironment|oracle|
+|connect|localhost:1521|dbusername|dbpassword|mydb| </pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Integration test with SQL*Loader</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Compile CommandLineFixture (by Bob Martin)</li>
+<li>Use it to run a shell script</li>
+</ul>
+<pre class="prettyprint">
+!3 Load some data with Oracle SQL*Loader
+|com.objectmentor.fixtures.CommandLineFixture       |
+|command|${PROJECT_ROOT}/loaderdemo/load_employee.sh|
+
+!|Query|select * from employee   |
+|id    |name? |dept?     |salary?|
+|100   |Thomas|Sales     |5000   |
+|200   |Jason |Technology|5500   |
+|300   |Mayla |Technology|7000   |
+|400   |Nisha |Marketing |9500   |
+|500   |Randy |Technology|6000   |
+|501   |Ritu  |Accounting|5400   |
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Automating tests execution</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>
+<p>Running tests from command line
+<pre class="prettyprint">
+java -jar fitnesse-standalone.jar \
+    -d "${TESTS_DIR}" \
+    <b>-c "BgougDemoSuite?suite&amp;format=text"</b>
+</pre></p>
+</li>
+<li>
+<p>Run <b>test</b> or <b>suite</b> as RESTful service
+  <a href="http://fitnesse.org/FitNesse.UserGuide.RestfulServices">http://fitnesse.org/FitNesse.UserGuide.RestfulServices</a></p>
+</li>
+<li>JUnit</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>How tests are stored?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Simple text files</li>
+<li><b>content.txt</b> - test definition and other Wiki content</li>
+<li><b>properties.xml</b> - metadata (Test, Sute)</li>
+<li>Easy to put under version control</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="images/bgoug/bgoug_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Demo</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Summary</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Changes of database code and schema are often relatively hard</li>
+<li>This makes the systems considered <b>legacy</b></li>
+<li>TDD stimulates designing cleaner and easier to change code</li>
+<li>Development of RDBMS artefacts is lagging when it comes to
+  engineering practices and tools</li>
+<li>DbFit can help</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Resources</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="smaller"><ul>
+<li><a href="http://benilovj.github.io/dbfit/">http://benilovj.github.io/dbfit</a> - with links to:<ul>
+<li>download DbFit</li>
+<li>docs, getting started information</li>
+<li>mailing list - don't hesitate to participate and ask questions</li>
+<li>code repository at github - reports for problems, suggestions and contributions are welcome</li>
+</ul>
+</li>
+<li><a href="https://github.com/javornikolov/tdd-with-dbfit-bgoug-201305">https://github.com/javornikolov/tdd-with-dbfit-bgoug-201305</a></li>
+<li><a href="http://gojko.net/2007/11/20/fighting-the-monster">http://gojko.net/2007/11/20/fighting-the-monster</a></li>
+<li><a href="http://www.agiledata.org/essays/tdd.html">http://www.agiledata.org/essays/tdd.html</a>, <a href="http://www.agiledata.org">http://www.agiledata.org</a></li>
+<li><b>Test Driven Development: By Example</b>, Kent Beck</li>
+<li><b>Refactoring Databases - Evolutionary Database Design</b>, Scott W. Ambler, Pramodkumar J. Sadalage</li>
+</ul></article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="images/bgoug/bgoug_128.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>Thank You!</h2>
+    <p>nikolov dot javor at gmail</p>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    <!-- populated from slide_config.json -->
+  </p>
+</slide>
+
+<slide class="questions-slide">
+  <hgroup class="flexbox vcenter">
+    <h2>Q&A</h2>
+  </hgroup>
+</slide>
+
+<!-- <slide class="logoslide dark nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo_white.png"></span>
+  </article>
+</slide> -->
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
