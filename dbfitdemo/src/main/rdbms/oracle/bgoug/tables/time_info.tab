@@ -1,0 +1,8 @@
+-- Used to facilitate testing.
+-- Should be empty in production environment!
+create table bscs_udr_time_info
+(
+	current_time date
+)
+;
+

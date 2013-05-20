@@ -1,0 +1,2 @@
+create table testtbl( n number, name varchar2(100) );
+

@@ -1,0 +1,8 @@
+create table parameters 
+(
+	id number( 12 ),
+	name varchar2( 100 char ) not null,
+	value varchar2( 300 char ),
+	description varchar2( 1000 char )
+);
+
