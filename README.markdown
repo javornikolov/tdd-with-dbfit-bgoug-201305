@@ -35,8 +35,10 @@ Content description:
 
 #### Prerequisites
 * Java (JDK) - version >=6 (tested with 7)
-* Oracle JDBC Driver (ojdbc6.jar)
-* In order to execute tests: Oracle Database instance & schema is needed
+* Oracle JDBC Driver >= 11.2.0.3 (ojdbc6.jar).
+  - [download page](http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html)
+  - Or take it from `$ORACLE_HOME/jdbc/lib`
+* Oracle Database instance & schema is needed
   (with privileges to connect and create table,view,trigger,pl/sql)
 * DbFit 2.x
   - Follow installation instructions of DbFit (download, unzip)
