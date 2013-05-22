@@ -38,7 +38,7 @@ Content description:
   - Or take it from `$ORACLE_HOME/jdbc/lib`
 * Oracle Database instance & schema is needed
   (with privileges to connect and create table,view,trigger,pl/sql)
-* DbFit 2.x
+* [DbFit](http://benilovj.github.io/dbfit) >= 2.x
   - Follow installation instructions of DbFit (download, unzip)
   - Copy ojdbc6.jar inside DbFit's lib directory
   - Copy the provided CommandLineFixture `.jar` from `dist` to DbFit's lib
