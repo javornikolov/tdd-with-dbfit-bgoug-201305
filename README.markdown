@@ -3,7 +3,7 @@
 ## Introduction ##
 Here I'm maintaining some materials related to my talk given at
 [BGOUG Spring conference on 18 May 2013](http://www.bgoug.org/en/events/details/89.html):
-*Test-driven development of database code with DbFit and Oracle Database*
+*Test-driven development of database code with [DbFit](http://benilovj.github.io/dbfit) and Oracle Database*
 
 
 ## Presentation Slides
