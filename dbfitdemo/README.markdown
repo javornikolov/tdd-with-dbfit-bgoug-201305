@@ -51,8 +51,7 @@ bundle install
 Having that:
 * `rake all` - deploys all rdbms artefacts and runs DbFit tests from command line
 * `guard` - monitors source folders and runs the above automatically on file
-  modification
-  - I'm not sure if `guard` is available on Windows.
+  modification. (Via the [Guard](https://github.com/guard) utility)
 
 #### Manual setup
 The database sources should be loaded into the relevant schema. (Look at
