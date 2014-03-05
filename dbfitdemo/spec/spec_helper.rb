@@ -5,7 +5,7 @@ def run_dbfit_suite()
     system("#{configatron.fitnesse_home}/startFitnesse.sh",
       '-o',
       '-f', "#{configatron.project_root}/plugins.properties",
-      '-d', "#{configatron.project_root}/target/test/rdbms/dbfit",
+      '-d', "#{configatron.project_root}/dbfitdemo/target/test/rdbms/dbfit",
       "-c", "BgougDemoSuite?suite&format=text")
 
     return $?
