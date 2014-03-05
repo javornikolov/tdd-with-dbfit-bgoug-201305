@@ -7,39 +7,39 @@ CLOBBER.include( 'target' )
 
 desc "Copy sql to target"
 FileList[
-		'src/**/*.sql', 'src/**/*.pls', 'src/**/*.pks',
-		'src/**/*.pkb', 'src/**/*.tab', 'src/**/*.vw',
-		'src/test/rdbms/dbfit/FitNesseRoot/BgougDemoSuite/**/*.*'
-		].each do |source|
-	target = source.sub( 'src', 'target' )
-	target_dir = File.dirname( target )
-	directory target_dir	
+    'src/**/*.sql', 'src/**/*.pls', 'src/**/*.pks',
+    'src/**/*.pkb', 'src/**/*.tab', 'src/**/*.vw',
+    'src/test/rdbms/dbfit/FitNesseRoot/BgougDemoSuite/**/*.*'
+    ].each do |source|
+  target = source.sub( 'src', 'target' )
+  target_dir = File.dirname( target )
+  directory target_dir
 
-	file target => [source, target_dir] do
-		cp source, target, :verbose => false
-	end
-	desc "copy db scripts"
-	task :copy_db_scripts => target
+  file target => [source, target_dir] do
+    cp source, target, :verbose => false
+  end
+  desc "copy db scripts"
+  task :copy_db_scripts => target
 end
 
 FileList['setup/setup*.sql'].each do |source|
-	target = source.sub( 'setup', 'target' )
-	target_dir = File.dirname( target )
-	directory target_dir	
+  target = source.sub( 'setup', 'target' )
+  target_dir = File.dirname( target )
+  directory target_dir
 
-	file target => [source, target_dir] do
-		cp source, target
-	end
-	desc "Prepare setup scripts"
-	task :prepare_setup_scripts => target
+  file target => [source, target_dir] do
+    cp source, target
+  end
+  desc "Prepare setup scripts"
+  task :prepare_setup_scripts => target
 end
 
 task :deploy_to_db => [:copy_db_scripts, :prepare_setup_scripts] do
-	Dir.chdir( 'target' ) do
-		system( 'sqlplus',
-			"#{configatron.dbuser}/#{configatron.dbpass}",
-			'@', 'setup_main.sql' )
-	end
+  Dir.chdir( 'target' ) do
+    system( 'sqlplus',
+      "#{configatron.dbuser}/#{configatron.dbpass}",
+      '@', 'setup_main.sql' )
+  end
 end
 
 RSpec::Core::RakeTask.new(:spec_tests) do |spec|
@@ -49,7 +49,7 @@ end
 task :run_tests => [:spec_tests]
 
 task :test => [:deploy_to_db, :run_tests]
-		
+
 task :build => [:copy_db_scripts, :prepare_setup_scripts]
 task :default => [:build]
 
