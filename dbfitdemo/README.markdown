@@ -17,7 +17,7 @@ Content description:
   - JRE should be enough for running tests
   - If compiling CommandLineFixture - install JDK (includes JRE)
 * Oracle JDBC Driver >= 11.2.0.3 (ojdbc6.jar).
-  - [download page](http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html)
+  - [download page](http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html)
   - Or take it from `$ORACLE_HOME/jdbc/lib`
 * Oracle Database instance & schema is needed
   (with privileges to connect and create table,view,trigger,pl/sql)
@@ -38,7 +38,7 @@ Content description:
 This is needed to use some of the build/run scripts automating the tasks of
 deploying db objects and running tests.
 
-* Install Ruby (tested with version 2.0)
+* Install Ruby (recommended 2.1.1+)
 * Copy `config.rb.sample` to the parent folder with name `config.rb` and edit
 the file accordingly
 * Install related ruby gems:
