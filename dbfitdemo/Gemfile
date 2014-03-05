@@ -1,10 +1,7 @@
 source 'https://rubygems.org' 
 
-gem 'configatron_plus'
+gem 'configatron'
 gem 'buildr', '>=1.4.12'
-# gem 'yamler'
-#gem 'ffi-ncurses'
 gem 'guard'
-# gem 'guard-shell'
 gem 'guard-rake'
 
