@@ -48,6 +48,14 @@ end
 
 task :run_tests => [:spec_tests]
 
+desc "Run DbFit server"
+task :run_dbfit do
+  project_dir = File.expand_path File.dirname(__FILE__)
+  system("#{configatron.fitnesse_home}/startFitnesse.sh",
+    '-f', "#{configatron.project_root}/plugins.properties",
+    '-d', "#{project_dir}/src/test/rdbms/dbfit")
+end
+
 task :test => [:deploy_to_db, :run_tests]
 
 task :build => [:copy_db_scripts, :prepare_setup_scripts]
