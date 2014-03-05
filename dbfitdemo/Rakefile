@@ -63,5 +63,3 @@ task :default => [:build]
 
 task :all => [:default, :test]
 
-init()
-

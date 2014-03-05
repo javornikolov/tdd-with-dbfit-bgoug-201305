@@ -10,3 +10,5 @@ def init_custom_config()
 
   require custom_config if File.file?(custom_config)
 end
+
+init()

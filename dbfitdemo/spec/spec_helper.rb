@@ -12,5 +12,3 @@ def run_dbfit_suite()
   end
 end
 
-init()
-
